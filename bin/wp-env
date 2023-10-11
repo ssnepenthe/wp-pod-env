@@ -11,10 +11,12 @@ if ( ! command.length ) {
 // Rather than just executing the current CLI we will attempt to find a local version
 // and execute that one instead. This prevents users from accidentally using the
 // global CLI when a potentially different local version is expected.
-const localPath = require.resolve( '@wordpress/env/lib/cli.js', {
-	paths: [ process.cwd(), __dirname ],
-} );
-const cli = require( localPath )();
+// @todo Revisit at a much later stage...
+// const localPath = require.resolve( '@wordpress/env/lib/cli.js', {
+// 	paths: [ process.cwd(), __dirname ],
+// } );
+// const cli = require( localPath )();
+const cli = require( '../lib/cli' )();
 
 // Now we can execute the CLI with the given command.
 cli.parse( command );
