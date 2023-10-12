@@ -1,4 +1,14 @@
-# `wp-env`
+# `wp-pod-env`
+
+This is a fork of `wp-env` exploring what it will take to support podman and podman-compose.
+
+In its current state it appears to be fully functional with podman on fedora.
+
+It is unlikely to work with podman on macos (though this has not been tested), but this will be coming soon.
+
+It is unlikely that I will test this on windows. If anybody is interested in helping out with this please reach out via the repo issues or discussions.
+
+---
 
 `wp-env` lets you easily set up a local WordPress environment for building and testing plugins and themes. It's simple to install and requires no configuration.
 
