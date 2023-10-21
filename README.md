@@ -2,13 +2,44 @@
 
 This is a fork of `wp-env` exploring what it will take to support podman and podman-compose.
 
-In its current state it appears to be fully functional with podman on fedora.
+## Linux
 
-It is unlikely to work with podman on macos (though this has not been tested), but this will be coming soon.
+In its current state it appears to be fully functional with podman on fedora (presumably any linux distro).
 
-It is unlikely that I will test this on windows. If anybody is interested in helping out with this please reach out via the repo issues or discussions.
+On SELinux systems you will likely need to update your containers configuration at `~/.config/containers/containers.conf` to contain the following:
+
+```
+[containers]
+label = false
+```
+
+[You can read more about this setting here.](https://github.com/containers/common/blob/main/docs/containers.conf.5.md)
+
+You may also need to update some combination of unqualified search registry and short name aliasing mode settings in `~/.config/containers/registries.conf`.  The easiest approach is to set `docker.io` as the only unqualified search registry by adding the following to `registries.conf`:
+
+```
+unqualified-search-registries = ["docker.io"]
+```
+
+[You can read more about these settings here.](https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md)
+
+## Mac OS
+
+Podman runs within a linux VM on macos which seems to cause a number of permissions related issues between the alpine cli image and the debian apache image. The simplest fix I could come up with was to remove the cli containers altogether. WP-CLI is instead installed directly in the WordPress containers.
+
+Since this is a pretty significant change from wp-env, I am not sure whether it will be merged into main
+
+For now if you are interested in using podman on MacOS, use the [`macos` branch](https://github.com/ssnepenthe/wp-pod-env/tree/e3f6367a8ac809e3609b86d2c1e3a0f4a5fdf22c).
+
+There should be no need to make any configuration changes on a mac.
+
+## Windows
+
+It is unlikely at this time that I will test this on windows. If anybody is interested in helping out with this please reach out via the repo issues or discussions.
 
 ---
+
+# Original README
 
 `wp-env` lets you easily set up a local WordPress environment for building and testing plugins and themes. It's simple to install and requires no configuration.
 
