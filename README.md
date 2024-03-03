@@ -6,23 +6,6 @@ This is a fork of `wp-env` exploring what it will take to support podman and pod
 
 In its current state it appears to be fully functional with podman on fedora (presumably any linux distro).
 
-On SELinux systems you will likely need to update your containers configuration at `~/.config/containers/containers.conf` to contain the following:
-
-```
-[containers]
-label = false
-```
-
-[You can read more about this setting here.](https://github.com/containers/common/blob/main/docs/containers.conf.5.md)
-
-You may also need to update some combination of unqualified search registry and short name aliasing mode settings in `~/.config/containers/registries.conf`.  The easiest approach is to set `docker.io` as the only unqualified search registry by adding the following to `registries.conf`:
-
-```
-unqualified-search-registries = ["docker.io"]
-```
-
-[You can read more about these settings here.](https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md)
-
 ## Mac OS
 
 Podman runs within a linux VM on macos which seems to cause a number of permissions related issues between the alpine cli image and the debian apache image. The simplest fix I could come up with was to remove the cli containers altogether. WP-CLI is instead installed directly in the WordPress containers.
