@@ -2,23 +2,9 @@
 
 This is a fork of `wp-env` exploring what it will take to support podman and podman-compose.
 
-## Linux
+In its current state it appears to be fully functional with podman on fedora and presumably any linux distro where you can install podman.
 
-In its current state it appears to be fully functional with podman on fedora (presumably any linux distro).
-
-## Mac OS
-
-Podman runs within a linux VM on macos which seems to cause a number of permissions related issues between the alpine cli image and the debian apache image. The simplest fix I could come up with was to remove the cli containers altogether. WP-CLI is instead installed directly in the WordPress containers.
-
-Since this is a pretty significant change from wp-env, I am not sure whether it will be merged into main
-
-For now if you are interested in using podman on MacOS, use the [`macos` branch](https://github.com/ssnepenthe/wp-pod-env/tree/e3f6367a8ac809e3609b86d2c1e3a0f4a5fdf22c).
-
-There should be no need to make any configuration changes on a mac.
-
-## Windows
-
-It is unlikely at this time that I will test this on windows. If anybody is interested in helping out with this please reach out via the repo issues or discussions.
+Unfortunately I am unable to test this on macos and windows, but I suspect it will not work for either as written currently. If anybody is interested in testing this, please get in touch via the github issue tracker.
 
 ---
 
