@@ -6,6 +6,14 @@ In its current state it appears to be fully functional with podman on fedora and
 
 Unfortunately I am unable to test this on macos and windows, but I suspect it will not work for either as written currently. If anybody is interested in testing this, please get in touch via the github issue tracker.
 
+## Summary of modifications
+
+* Upgrades the docker-compose npm package to >= 0.23.9 which allows overriding the docker executable path
+* Uses fully qualified image names (`docker.io/library/mariadb` vs just `mariadb`)
+* Applies the "z" option to local volumes to work around permissions issues caused by SELinux
+* Picks random ports to assign to the database containers in node-land rather than relying on docker (podman) to assign a random port ([related issue](https://github.com/containers/podman-compose/issues/778))
+* Manually removes podman networks and images via direct calls to podman when running wp-env destroy ([related issue](https://github.com/containers/podman-compose/issues/387))
+
 ---
 
 # Original README
