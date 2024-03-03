@@ -11,6 +11,7 @@ Unfortunately I am unable to test this on macos and windows, but I suspect it wi
 * Upgrades the docker-compose npm package to >= 0.23.9 which allows overriding the docker compose executable path
 * Uses fully qualified image names (`docker.io/library/mariadb` vs just `mariadb`)
 * Applies the "z" option to local volumes to work around permissions issues caused by SELinux
+* Sets userns=keep-id for wordpress and cli containers to ensure file ownership parity between host and containers like we already get in docker
 * Drops usage of `podman compose port` in favor of direct calls to `podman port` ([related issue](https://github.com/containers/podman-compose/issues/778))
 * Manually removes podman networks and images via direct calls to podman when running wp-env destroy ([related issue](https://github.com/containers/podman-compose/issues/387))
 
